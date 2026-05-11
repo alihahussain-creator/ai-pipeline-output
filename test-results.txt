@@ -1,0 +1,47 @@
+
+FAIL ./app.test.js
+  ● Test suite failed to run
+
+    Jest encountered an unexpected token
+
+    Jest failed to parse a file. This happens e.g. when your code or its dependencies use non-standard JavaScript syntax, or when Jest is not configured to support such syntax.
+
+    Out of the box Jest supports Babel, which will be used to transform your files into valid JS based on your Babel configuration.
+
+    By default "node_modules" folder is ignored by transformers.
+
+    Here's what you can do:
+     • If you are trying to use ECMAScript Modules, see https://jestjs.io/docs/ecmascript-modules for how to enable it.
+     • If you are trying to use TypeScript, see https://jestjs.io/docs/getting-started#using-typescript
+     • To have some of your "node_modules" files transformed, you can specify a custom "transformIgnorePatterns" in your config.
+     • If you need a custom transformation specify a "transform" option in your config.
+     • If you simply want to mock your non-JS modules (e.g. binary assets) you can stub them out with the "moduleNameMapper" config option.
+
+    You'll find more details and examples of these config options in the docs:
+    https://jestjs.io/docs/configuration
+    For information about custom transformations, see:
+    https://jestjs.io/docs/code-transformation
+
+    Details:
+
+    /tmp/pipeline_AS-7_hg8lDU/app.js:1
+    ({"Object.<anonymous>":function(module,exports,require,__dirname,__filename,jest){export function addTodo() {const input = document.getElementById('todo-input');const todoText = input.value;if (todoText !== '') {const todo = { text: todoText, completed: false };const todos = getTodos();todos.push(todo);saveTodos(todos);renderTodos(todos);input.value = '';}}export function deleteTodo(index) {const todos = getTodos();todos.splice(index, 1);saveTodos(todos);renderTodos(todos);}export function toggleTodo(index) {const todos = getTodos();todos[index].completed = !todos[index].completed;saveTodos(todos);renderTodos(todos);}export function getTodos() {const todosJSON = localStorage.getItem('todos');return todosJSON ? JSON.parse(todosJSON) : [];};export function saveTodos(todos) {const todosJSON = JSON.stringify(todos);localStorage.setItem('todos', todosJSON);}export function renderTodos(todos) {const ul = document.getElementById('todo-list');ul.innerHTML = '';const remainingCount = document.getElementById('remaining-count');let count = 0;todos.forEach((todo, index) => {const li = document.createElement('li');const checkbox = document.createElement('input');checkbox.type = 'checkbox';checkbox.checked = todo.completed;checkbox.addEventListener('change', () => toggleTodo(index));const text = document.createElement('span');text.textContent = todo.text;if (todo.completed) {text.style.textDecoration = 'line-through';} else {count++;}const deleteButton = document.createElement('button');deleteButton.textContent = 'Delete';deleteButton.addEventListener('click', () => deleteTodo(index));li.appendChild(checkbox);li.appendChild(text);li.appendChild(deleteButton);ul.appendChild(li);});remainingCount.textContent = ` Remaining: ${count}`;}document.addEventListener('DOMContentLoaded', () => {const addTodoButton = document.getElementById('add-todo');addTodoButton.addEventListener('click', addTodo);const todos = getTodos();renderTodos(todos);})
+                                                                                      ^^^^^^
+
+    SyntaxError: Unexpected token 'export'
+
+    > 1 | const { addTodo, deleteTodo, toggleTodo, getTodos, saveTodos, renderTodos } = require('./app.js');
+        |                                                                                                   ^
+      2 |
+      3 | describe('addTodo function', () => {
+      4 |   it('adds a new todo to the list', () => {
+
+      at Runtime.createScriptFromCode (node_modules/jest-runtime/build/index.js:1505:14)
+      at Object.<anonymous> (app.test.js:1:181)
+
+Test Suites: 1 failed, 1 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        0.811 s
+Ran all test suites.
+Force exiting Jest: Have you considered using `--detectOpenHandles` to detect async operations that kept running after all tests finished?
