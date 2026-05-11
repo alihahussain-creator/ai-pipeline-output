@@ -1,0 +1,34 @@
+
+FAIL ./app.test.js
+  Todo App
+    ✓ should add a new todo item (25 ms)
+    ✓ should mark a todo item as complete (7 ms)
+    ✓ should delete a todo item (4 ms)
+    ✓ should update the remaining count (4 ms)
+    ✓ should save todos to local storage (3 ms)
+    ✓ should load todos from local storage (3 ms)
+    ✓ should not throw any console errors (6 ms)
+    ✕ should be mobile responsive (7 ms)
+
+  ● Todo App › should be mobile responsive
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "375px"
+    Received: ""
+
+      87 |   it('should be mobile responsive', () => {
+      88 |     const main = document.getElementsByTagName('main')[0];
+    > 89 |     expect(main.style.maxWidth).toBe('375px');
+         |                                 ^
+      90 |   });
+      91 | });
+
+      at Object.<anonymous> (app.test.js:89:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 7 passed, 8 total
+Snapshots:   0 total
+Time:        0.863 s, estimated 1 s
+Ran all test suites.
+Force exiting Jest: Have you considered using `--detectOpenHandles` to detect async operations that kept running after all tests finished?
