@@ -1,0 +1,150 @@
+
+FAIL ./app.test.js
+  addTodo function
+    ✓ adds a new todo item to the todos array (3 ms)
+    ✓ sets the completed status of the new todo item to false (1 ms)
+    ✕ calls saveTodos and renderTodos functions (1 ms)
+  deleteTodo function
+    ✕ removes the todo item at the specified index from the todos array (5 ms)
+    ✕ calls saveTodos and renderTodos functions (1 ms)
+  toggleTodo function
+    ✓ toggles the completed status of the todo item at the specified index (1 ms)
+    ✕ calls saveTodos and renderTodos functions (1 ms)
+  saveTodos function
+    ✓ saves the todos array to localStorage
+  renderTodos function
+    ✕ updates the remaining todos count
+    ✕ renders the todo list (1 ms)
+  acceptance criteria
+    ✕ all features work correctly (1 ms)
+    ✓ no console errors (2 ms)
+    ✕ mobile responsive (1 ms)
+
+  ● addTodo function › calls saveTodos and renderTodos functions
+
+    Property `saveTodos` does not exist in the provided object
+
+      17 |
+      18 |     it('calls saveTodos and renderTodos functions', () => {
+    > 19 |         const saveTodosSpy = jest.spyOn(global, 'saveTodos');
+         |                                   ^
+      20 |         const renderTodosSpy = jest.spyOn(global, 'renderTodos');
+      21 |         addTodo('New Todo');
+      22 |         expect(saveTodosSpy).toHaveBeenCalledTimes(1);
+
+      at ModuleMocker.spyOn (node_modules/jest-mock/build/index.js:731:13)
+      at Object.<anonymous> (app.test.js:19:35)
+
+  ● deleteTodo function › removes the todo item at the specified index from the todos array
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Todo 2"
+    Received: "New Todo"
+
+      34 |     it('removes the todo item at the specified index from the todos array', () => {
+      35 |         deleteTodo(0);
+    > 36 |         expect(JSON.parse(localStorage.getItem('todos'))[0].text).toBe('Todo 2');
+         |                                                                   ^
+      37 |     });
+      38 |
+      39 |     it('calls saveTodos and renderTodos functions', () => {
+
+      at Object.<anonymous> (app.test.js:36:67)
+
+  ● deleteTodo function › calls saveTodos and renderTodos functions
+
+    Property `saveTodos` does not exist in the provided object
+
+      38 |
+      39 |     it('calls saveTodos and renderTodos functions', () => {
+    > 40 |         const saveTodosSpy = jest.spyOn(global, 'saveTodos');
+         |                                   ^
+      41 |         const renderTodosSpy = jest.spyOn(global, 'renderTodos');
+      42 |         deleteTodo(0);
+      43 |         expect(saveTodosSpy).toHaveBeenCalledTimes(1);
+
+      at ModuleMocker.spyOn (node_modules/jest-mock/build/index.js:731:13)
+      at Object.<anonymous> (app.test.js:40:35)
+
+  ● toggleTodo function › calls saveTodos and renderTodos functions
+
+    Property `saveTodos` does not exist in the provided object
+
+      58 |
+      59 |     it('calls saveTodos and renderTodos functions', () => {
+    > 60 |         const saveTodosSpy = jest.spyOn(global, 'saveTodos');
+         |                                   ^
+      61 |         const renderTodosSpy = jest.spyOn(global, 'renderTodos');
+      62 |         toggleTodo(0);
+      63 |         expect(saveTodosSpy).toHaveBeenCalledTimes(1);
+
+      at ModuleMocker.spyOn (node_modules/jest-mock/build/index.js:731:13)
+      at Object.<anonymous> (app.test.js:60:35)
+
+  ● renderTodos function › updates the remaining todos count
+
+    TypeError: Cannot read properties of null (reading 'textContent')
+
+      88 |         renderTodos();
+      89 |         const remainingCount = document.getElementById('remaining-count');
+    > 90 |         expect(remainingCount.textContent).toBe('2');
+         |                               ^
+      91 |     });
+      92 |
+      93 |     it('renders the todo list', () => {
+
+      at Object.<anonymous> (app.test.js:90:31)
+
+  ● renderTodos function › renders the todo list
+
+    TypeError: Cannot read properties of null (reading 'children')
+
+      94 |         renderTodos();
+      95 |         const todoList = document.getElementById('todo-list');
+    > 96 |         expect(todoList.children.length).toBe(2);
+         |                         ^
+      97 |     });
+      98 | });
+      99 |
+
+      at Object.<anonymous> (app.test.js:96:25)
+
+  ● acceptance criteria › all features work correctly
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      102 |         addTodo('New Todo');
+      103 |         toggleTodo(0);
+    > 104 |         expect(JSON.parse(localStorage.getItem('todos'))[0].completed).toBe(true);
+          |                                                                        ^
+      105 |         deleteTodo(0);
+      106 |         expect(JSON.parse(localStorage.getItem('todos')).length).toBe(0);
+      107 |     });
+
+      at Object.<anonymous> (app.test.js:104:72)
+
+  ● acceptance criteria › mobile responsive
+
+    Cannot spy on the `window` property because it is not a function; object given instead.
+
+      116 |
+      117 |     it('mobile responsive', () => {
+    > 118 |         const windowSpy = jest.spyOn(global, 'window');
+          |                                ^
+      119 |         windowSpy.innerWidth = 375;
+      120 |         renderTodos();
+      121 |         expect(document.body.style.width).toBeUndefined();
+
+      at ModuleMocker.spyOn (node_modules/jest-mock/build/index.js:739:15)
+      at Object.<anonymous> (app.test.js:118:32)
+
+Test Suites: 1 failed, 1 total
+Tests:       8 failed, 5 passed, 13 total
+Snapshots:   0 total
+Time:        0.794 s
+Ran all test suites.
+Force exiting Jest: Have you considered using `--detectOpenHandles` to detect async operations that kept running after all tests finished?
