@@ -1,0 +1,14 @@
+
+PASS ./app.test.js
+  App structure
+    ✓ page renders with content (11 ms)
+    ✓ has at least one input (12 ms)
+    ✓ has at least one button (6 ms)
+    ✓ all exported functions exist (4 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       4 passed, 4 total
+Snapshots:   0 total
+Time:        1.107 s
+Ran all test suites.
+Force exiting Jest: Have you considered using `--detectOpenHandles` to detect async operations that kept running after all tests finished?
